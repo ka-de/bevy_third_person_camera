@@ -1,5 +1,5 @@
-use bevy::prelude::*;
-use bevy_third_person_camera::{camera::*, *};
+use bevy::{ prelude::*, color::palettes::css::DARK_GREEN };
+use bevy_third_person_camera::{ camera::*, * };
 
 fn main() {
     App::new()
@@ -34,11 +34,11 @@ fn spawn_camera(mut commands: Commands) {
         ThirdPersonCamera {
             aim_enabled: true,
             aim_speed: 3.0, // default
-            aim_zoom: 0.7,  // default
+            aim_zoom: 0.7, // default
             offset_enabled: true,
             offset_toggle_enabled: true,
             gamepad_settings: CameraGamepadSettings { ..default() },
-            zoom_enabled: true,        // default
+            zoom_enabled: true, // default
             zoom: Zoom::new(1.5, 3.0), // default
             ..default()
         },
@@ -50,11 +50,11 @@ fn spawn_world(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
 
-    mut materials: ResMut<Assets<StandardMaterial>>,
+    mut materials: ResMut<Assets<StandardMaterial>>
 ) {
     let floor = PbrBundle {
         mesh: meshes.add(Mesh::from(Plane3d::default().mesh().size(15.0, 15.0))),
-        material: materials.add(Color::DARK_GREEN),
+        material: materials.add(Color::srgb_from_array(DARK_GREEN.to_f32_array_no_alpha())),
         ..default()
     };
 
